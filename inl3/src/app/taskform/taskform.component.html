@@ -1,0 +1,23 @@
+<!-- ngForm allows validating  -->
+<form #form="ngForm" style="margin-bottom: 10px">
+
+
+    <input class="input" type="text" placeholder="title" ngModel #title="ngModel" name="title" required minlength="3" maxlength="30"
+    />
+    <!-- Errors -->
+    <div class="error" *ngIf="title.touched && !title.valid || title.dirty && !title.valid ">
+        <div *ngIf="title.errors.required">
+            Pleas enter a title
+        </div>
+        <div class="error" *ngIf="title.errors.minlength">
+            Title needs to be at least {{title.errors.minlength.requiredLength}} characters.
+        </div>
+    </div>
+
+    <input class="input" type="text" placeholder="description" #description />
+
+    <!-- button disabled if form isnt validated, emptying form when submitted -->
+    <button [disabled]="!form.valid" (click)="createTask(title.value, description.value); description.value=''; title.value='';">
+        Save
+    </button>
+</form>

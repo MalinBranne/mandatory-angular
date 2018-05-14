@@ -1,0 +1,21 @@
+<div class="board">
+
+  <!-- button flips toggle wich initialy has no value (false)-->
+  <button style="margin: 20px 0" (click)="toggle = !toggle">
+    New Task
+  </button>
+
+  <!-- toggle shows taskform if true  -->
+  <task-form *ngIf="toggle" (eventObject)="toggle =!toggle"></task-form>
+
+
+  <div class="lists">
+
+    <!-- rendering a tasklist for each status. including sending the current status as [status] -->
+    <task-list *ngFor="let st of status" [status]="st">
+    </task-list>
+
+  </div>
+
+
+</div>

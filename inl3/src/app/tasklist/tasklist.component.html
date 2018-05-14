@@ -1,0 +1,18 @@
+<div class="header">
+  {{status}}
+
+  <ng-container *ngFor="let task of tasks">
+
+
+    <!-- Render tasks if the tasks status is the same as the lists "status" -->
+    <!-- when statusChanged is triggered in the task-component and the status for the task is changed (so the item no longer renders in that list), 
+       we catch the event and update the lists  (rendering the task in its new place) -->
+    <task
+      *ngIf="status == task.status"     
+      [task]="task"
+      (statusChanged)="handleStatusChanged($event)">
+    </task>
+
+  </ng-container>
+
+</div>
